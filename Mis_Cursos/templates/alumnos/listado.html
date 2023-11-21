@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block contenido %}
+  <h1> Listado de Alumnos</h1>
+  <ul>
+    {% for alumno in alumnos %}
+      <li>
+        {{ alumno.nombre }} {{ alumno.apellido }} - DNI: {{ alumno.dni }} {{ alumno.telefono }} {{ alumno.correo_electronico }}
+        {% if alumno.cursos.all %}
+          Cursos:
+          <ul>
+            {% for curso in alumno.cursos.all %}
+              <li>{{ curso.nombre }} - Banda Horaria: {% if curso.banda_horaria %}{{ curso.banda_horaria.nombre }}{% else %}Sin banda horaria{% endif %}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          No está inscrito en ningún curso.
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+

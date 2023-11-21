@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+
+{% block contenido %}
+<h1> Editar alumno</h1>
+<form method="post" action="{% url 'modificar_alumno' dni=alumno.dni %}">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="PUT"> 
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+  </form>
+{% endblock %}
